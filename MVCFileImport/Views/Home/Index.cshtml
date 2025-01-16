@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var nameCounts = ViewBag.NameCounts as List<MVCFileImport.Models.OutputModel>;
+    var addressList = ViewBag.CityList as List<MVCFileImport.Models.OutputModel2>;
+}
+
+@if (nameCounts != null && nameCounts.Count > 0)
+{
+    <h2>1st Output</h2>
+    <p>-------------------</p>
+    @foreach (var first in nameCounts)
+    {
+        <p>@first.Name
+            , @first.Count
+        </p>
+    }
+}
+else
+{
+    <p>No data found in the CSV file.</p>
+}
+<h2>2nd Output</h2>
+<p>-------------------</p>
+
+@if (addressList != null && addressList.Count > 0)
+{
+    <ul>
+        @for (int i = 0; i < addressList.Count; i++)
+        {
+            if (i == 0)
+            {
+                <p><u>@addressList[i].Address</u></p>
+            }
+            else
+            {
+                <p>@addressList[i].Address</p>
+            }
+        }
+    </ul>
+}
+else
+{
+    <p>No unique cities found in the CSV file.</p>
+}
